@@ -9,11 +9,7 @@ const { writeToFile, copyStyle } = require('./utils/createPage');
 //employees is a global array that is used to store the employee objects as they are created.
 let employees = [];
 
-//this function adds the team manger object. it prompts the user for input and returns the provided answers.
-//**NOTE** - while i have input validation, validating input on a type: 'number' prompt was acting funny for me in testing. if invalid input is provided,
-//inquirer generates a NaN error that displays on the input prompt. you have to clear the error before you can enter valid input or the input will continue to be invalid.
-//you can't just backspace to clear the error, you have to use the up and down arrows on the keyboard to get rid of it. i'm not sure if this is something with inquirer or 
-//if it is due to the type of terminal i am using, but i couldn't find anything in inquirer's documentation or online that would indicate how to change this behavior.
+
 const addManager = () => {
     return inquirer.prompt([
         {
@@ -71,8 +67,7 @@ const addManager = () => {
     ]);
 }
 
-//if the user chooses to add an engineer from the main menu, this function is called and the user is prompted with engineer appropriate questions.
-//see my NOTE in addManager regarding the validation on type: 'number' questions.
+
 const addEngineer = () => {
     return inquirer.prompt([
         {
@@ -131,8 +126,7 @@ const addEngineer = () => {
     
 }
 
-//if the user chooses to add an intern from the main menu, this function is called and the user is prompted with intern appropriate questions.
-//see my NOTE in addManager regarding the validation on type: 'number' questions.
+
 const addIntern = () => {
     return inquirer.prompt([
         {
@@ -191,9 +185,7 @@ const addIntern = () => {
    
 }
 
-//this function is called to display the main menu where the user selects to add an engineer, add an intern, or finish. when a choice is made, the appropriate
-//function is called, the answers that are returned are then pushed to the employees array and then the displayMenu function is recursively called. if the finished
-//option is selected the app calls the function to generate the HTML and write the file.
+
 const displayMenu = () => {
     let done = false;
         inquirer.prompt(
@@ -239,7 +231,7 @@ const displayMenu = () => {
         });
 }
 
-//start the application
+
 addManager().then(function(mgrInfo){
     const manager = new Manager(mgrInfo.name, mgrInfo.id, mgrInfo.email, mgrInfo.officeNum);
     employees.push(manager);
